@@ -107,7 +107,7 @@ function WriteRunLog {
     $_runlog_row = "" | Select-Object "Log"
     $_runlog_row.Log = [string]$_offset + " - " + [string]$_prestring + [string]$message
     $script:_runlog += $_runlog_row
-    Write-Host $_runlog_row.Log -ForegroundColor $_color
+    Write-Output $_runlog_row.Log -ForegroundColor $_color
 
     if ($WriteLogfile -and $script:_logfile) {
         $_runlog_row.Log | Out-File -FilePath $script:_logfile -Append
@@ -508,17 +508,17 @@ $body_scsi = @'
 $Check_Windows_Script = @'
 $start = (Get-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\stornvme -Name Start).Start
 if ($start -eq 0) {
-    Write-Host "Start:OK"
+    Write-Output "Start:OK"
 }
 else {
-    Write-Host "Start:ERROR"
+    Write-Output "Start:ERROR"
 }
 $startoverride = Get-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\stornvme\StartOverride -ErrorAction SilentlyContinue
 if ($startoverride) {
-    Write-Host "StartOverride:ERROR"
+    Write-Output "StartOverride:ERROR"
 }
 else {
-    Write-Host "StartOverride:OK"
+    Write-Output "StartOverride:OK"
 }
 '@
 
