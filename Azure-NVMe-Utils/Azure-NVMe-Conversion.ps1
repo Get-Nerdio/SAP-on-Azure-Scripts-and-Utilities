@@ -214,7 +214,7 @@ CheckForNewerVersion
 # Check if breaking change warning is enabled
 $_breakingchangewarning = Get-AzConfig -DisplayBreakingChangeWarning
 if ($_breakingchangewarning.Value -eq $true) {
-    Update-AzConfig -DisplayBreakingChangeWarning $false
+    Update-AzConfig -DisplayBreakingChangeWarning $false | Out-Null
 }
 
 # Check module versions
@@ -1012,7 +1012,7 @@ else {
 # Check if breaking change warning was enabled before
 if ($_breakingchangewarning.Value -eq $true) {
     WriteRunLog -message "Breaking Change Warning was enabled before script execution. Enabling it again."
-    Update-AzConfig -DisplayBreakingChangeWarning $true
+    Update-AzConfig -DisplayBreakingChangeWarning $true | Out-Null
 }
 
 # Info for next steps
