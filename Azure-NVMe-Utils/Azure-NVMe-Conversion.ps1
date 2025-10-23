@@ -107,7 +107,7 @@ function WriteRunLog {
     $_runlog_row = "" | Select-Object "Log"
     $_runlog_row.Log = [string]$_offset + " - " + [string]$_prestring + [string]$message
     $script:_runlog += $_runlog_row
-    Write-Output $_runlog_row.Log -ForegroundColor $_color
+    Write-Output $_runlog_row.Log 
 
     if ($WriteLogfile -and $script:_logfile) {
         $_runlog_row.Log | Out-File -FilePath $script:_logfile -Append
